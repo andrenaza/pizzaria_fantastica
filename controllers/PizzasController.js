@@ -23,6 +23,10 @@ const controller = {
         );
 
         res.render("index", {pizzas:pizzasFiltradas, busca:string});
+    },
+
+    create: (req, res) => {
+        res.render("crud-pizzas/create");
     }
 }
 
