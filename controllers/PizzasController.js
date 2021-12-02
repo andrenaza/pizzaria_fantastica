@@ -4,7 +4,7 @@ const { get } = require("../routers/PizzasRouter");
 const controller = {
 
     listar: (req, res)=> {
-        res.send(pizzas)
+       return res.render("index", {pizzas, busca:""});
     },
 
     getPizza: (req, res) => {
@@ -13,6 +13,16 @@ const controller = {
         const pizza = pizzas.find( (p,i) => p.id == idPizza);
 
         res.render("pizzas", {pizza});
+    },
+
+    busca: (req, res) =>{
+        const string = req.query.q.trim();
+        
+        const pizzasFiltradas = pizzas.filter(
+            p => p.nome.toUpperCase().includes(string.toUpperCase())
+        );
+
+        res.render("index", {pizzas:pizzasFiltradas, busca:string});
     }
 }
 

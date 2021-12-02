@@ -12,6 +12,7 @@ const router = express.Router();
 router.get("/", PizzasController.listar);
 router.get("/pizzas", PizzasController.listar);
 router.get("/pizzas/:id", PizzasController.getPizza);
+router.get("/busca", PizzasController.busca);
 
 // exportar o roteador
 module.exports = router;
