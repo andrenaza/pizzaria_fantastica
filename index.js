@@ -20,14 +20,14 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
 //Middleware de LOG
-//app.use(LogMiddleware);
+app.use(LogMiddleware);
 
 //configurando pasta public
 app.use(express.static(__dirname + "/public"));
 
 //criar a rota respondendo a requisição
 app.use("/", PizzasRouter);
-app.use("/adm", LogMiddleware, admRouter);
+app.use("/adm", admRouter);
 
 //levantar servidor
 app.listen (3000,()=> {console.log("Servidor rodando")})

@@ -1,6 +1,7 @@
 const pizzas = require("../database/pizzas.json");
 const { get } = require("../routers/PizzasRouter");
 const fs = require("fs");
+const { validationResult } = require("../middlewares/ValidadorDeFormPizzas");
 
 const controller = {
 
@@ -31,6 +32,14 @@ const controller = {
     },
 
     store: (req, res) => {
+
+        const erros = validationResult(req);
+
+        if(!erros.isEmpty()){
+
+            return res.render("crud-pizzas/create", {erros: erros.mapped()})
+        }
+
         const nome = req.body.nome;
         const ingredientes = req.body.ingredientes.split(",").map(a => a.trim());
         const preco = Number(req.body.preco);
