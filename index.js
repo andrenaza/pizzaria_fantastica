@@ -5,6 +5,9 @@ const express = require("express");
 const PizzasRouter = require("./routers/PizzasRouter")
 const admRouter = require ("./routers/AdmRouter");
 
+//Importando Middleware
+const LogMiddleware = require("./middlewares/LogMiddleware");
+
 // criando servidor
 const app = express();
 
@@ -16,12 +19,15 @@ app.set("views", "./views");
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
+//Middleware de LOG
+//app.use(LogMiddleware);
+
 //configurando pasta public
 app.use(express.static(__dirname + "/public"));
 
 //criar a rota respondendo a requisição
 app.use("/", PizzasRouter);
-app.use("/adm", admRouter);
+app.use("/adm", LogMiddleware, admRouter);
 
 //levantar servidor
 app.listen (3000,()=> {console.log("Servidor rodando")})
