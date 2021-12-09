@@ -34,7 +34,7 @@ const controller = {
         const nome = req.body.nome;
         const ingredientes = req.body.ingredientes.split(",").map(a => a.trim());
         const preco = Number(req.body.preco);
-        const pizza = {nome, ingredientes, preco, img:""};
+        const pizza = {nome, ingredientes, preco, img:"/img/" + req.file.filename};
         
         //Adicionar id a pizza recém-criada
         pizza.id = pizzas[pizzas.length -1].id + 1;
@@ -48,7 +48,6 @@ const controller = {
             JSON.stringify(pizzas, null,4),
             {flag:"w"}
             );
-
 
         //Direcionar o usuário para a página que exibe a lista de pizzas
         res.redirect("/");
