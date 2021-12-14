@@ -17,6 +17,10 @@ const upload = multer({storage});
 const router = express.Router();
 
 const PizzasController = require("../controllers/PizzasController");
+const AdmController = require("../controllers/AdmController");
+
+router.get("/login", AdmController.showLogin);
+router.post("/login", AdmController.login);
 
 router.get("/pizzas/create", PizzasController.create);
 router.post("/pizzas/create", upload.single("img"), ValidadorDeFormPizzas, PizzasController.store);
