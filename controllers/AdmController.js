@@ -21,7 +21,10 @@ module.exports = {
             return res.send("Usuário e/ou senha inválidos.")
         }
 
-        // se chegou até aqui, mandar msg de sucesso
-        return res.send("Ok! Tudo certo.")
+        // se chegou até aqui, escreve session do uruário
+        req.session.usuario = usuário;
+        
+        // redirecionar para uma pagina interna
+        return res.redirect("/adm/pizzas/create");
     }
 }

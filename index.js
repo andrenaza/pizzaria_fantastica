@@ -1,6 +1,8 @@
 //importanto express
 const express = require("express");
 
+const session = require("express-session");
+
 //importanto roteador
 const PizzasRouter = require("./routers/PizzasRouter")
 const admRouter = require ("./routers/AdmRouter");
@@ -18,6 +20,8 @@ app.set("views", "./views");
 //configurando o processamento de formulários
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+
+app.use(session({secret:"SEGREDO"}));
 
 //Middleware de LOG
 app.use(LogMiddleware);
