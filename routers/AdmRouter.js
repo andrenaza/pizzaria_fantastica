@@ -18,11 +18,12 @@ const router = express.Router();
 
 const PizzasController = require("../controllers/PizzasController");
 const AdmController = require("../controllers/AdmController");
+const UsuarioLogado = require("../middlewares/UsuarioLogado");
 
 router.get("/login", AdmController.showLogin);
 router.post("/login", AdmController.login);
 
-router.get("/pizzas/create", PizzasController.create);
-router.post("/pizzas/create", upload.single("img"), ValidadorDeFormPizzas, PizzasController.store);
+router.get("/pizzas/create", UsuarioLogado, PizzasController.create);
+router.post("/pizzas/create", UsuarioLogado, upload.single("img"), ValidadorDeFormPizzas, PizzasController.store);
 
 module.exports = router;

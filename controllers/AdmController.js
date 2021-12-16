@@ -22,7 +22,7 @@ module.exports = {
         }
 
         // se chegou até aqui, escreve session do uruário
-        req.session.usuario = usuário;
+        req.session.usuario = usuario;
         
         // redirecionar para uma pagina interna
         return res.redirect("/adm/pizzas/create");
