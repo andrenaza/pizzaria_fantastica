@@ -22,6 +22,7 @@ const UsuarioLogado = require("../middlewares/UsuarioLogado");
 
 router.get("/login", AdmController.showLogin);
 router.post("/login", AdmController.login);
+router.get("/logout", AdmController.logout);
 
 router.get("/pizzas/create", UsuarioLogado, PizzasController.create);
 router.post("/pizzas/create", UsuarioLogado, upload.single("img"), ValidadorDeFormPizzas, PizzasController.store);
