@@ -19,8 +19,9 @@ const router = express.Router();
 const PizzasController = require("../controllers/PizzasController");
 const AdmController = require("../controllers/AdmController");
 const UsuarioLogado = require("../middlewares/UsuarioLogado");
+const SemLogin = require("../middlewares/SemLogin");
 
-router.get("/login", AdmController.showLogin);
+router.get("/login", SemLogin ,AdmController.showLogin);
 router.post("/login", AdmController.login);
 router.get("/logout", AdmController.logout);
 
